@@ -5,10 +5,9 @@ This repository contains a collection of scripts and tools designed to enhance t
 
 Scripts:
 - **exif.bash**: Rename files based on their EXIF datetime.
-
+- **pass.bash**: Print files in a directory excluding audio files, image files, exif files, or print duplicate (exif) files.
 
 ## exif.bash
-
 ```
 exif <directory> [-n|-h]
         Rename files based on their EXIF datetime.
@@ -39,5 +38,78 @@ run/
 ```
 
 ## pass.bash
+```
+pass <directory> [options]
+  -a    Exclude audio files (m4a, mp3)
+  -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4)
+  -e    Exclude files with timestamps (YYYYMMDDHHMMSS)
+  -d    Print duplicate files with timestamps (YYYYMMDDHHMMSS-SS)
+  -h    Show this help message.
+```
 
+### Example
+```
+rsync -aHog --delete-after test/ run/
+. system/bash/pass.bash
+```
 
+#### Exclude audio files (m4a, mp3)
+```
+pass run/ -a
+```
+
+**Output**
+```
+run/
+
+17677.jpg
+2148799121.jpg
+2149271448.jpg
+2149512970.jpg
+26163.jpg
+26171.jpg
+aromatic-cup-tea-winter-table-forest.jpg
+happy-marshmallow-snowmen-christmas-winter-holiday-decorations copy.jpg
+happy-marshmallow-snowmen-christmas-winter-holiday-decorations.jpg
+```
+
+#### Exclude image files (jpg, jpeg, png, mov, avi, mp4)
+```
+pass run/ -i
+```
+
+**Output**
+```
+run/
+
+calming-rain-257596.mp3
+```
+
+#### Exclude files with timestamps (YYYYMMDDHHMMSS)
+```
+. system/bash/exif.bash
+exif run/
+pass run/ -e
+```
+
+**Output**
+```
+run/
+
+calming-rain-257596.mp3
+```
+
+#### Print duplicate files with timestamps (YYYYMMDDHHMMSS-SS)
+```
+pass run/ -d
+```
+
+**Output**
+```
+run/
+
+20250721174222-01.jpg
+```
+
+## renum.bash
+```

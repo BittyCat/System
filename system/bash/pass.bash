@@ -11,12 +11,14 @@ pass(){
       echo "  -a    Exclude audio files (m4a, mp3)"
       echo "  -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4)"
       echo "  -e    Exclude files with timestamps (YYYYMMDDHHMMSS)"
-      echo "  -d    Duplicate files with timestamps (YYYYMMDDHHMMSS-SS)"
+      echo "  -d    Print duplicate files with timestamps (YYYYMMDDHHMMSS-SS)"
       echo "  -h    Show this help message."
       return 1;;
   esac
 
   [[ ! -d "$1" ]] && echo "Error: Directory does not exist." && return 1
 
-  find "${1%/}/" -type f -regextype posix-extended ${opt} -regex ${rgx}
+  echo $'\n'"${1%/}/"$'\n'
+  find "${1%/}/" -type f -regextype posix-extended ${opt} -regex ${rgx} -printf "%P\n"
+  echo # newline
 }
