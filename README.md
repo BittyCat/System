@@ -40,10 +40,11 @@ run/
 ## pass.bash
 ```
 pass <directory> [options]
+        List all files in the given directory.
   -a    Exclude audio files (m4a, mp3)
   -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4)
   -e    Exclude files with timestamps (YYYYMMDDHHMMSS)
-  -d    Print duplicate files with timestamps (YYYYMMDDHHMMSS-SS)
+  -d    Print duplicate (exif) files with timestamps (YYYYMMDDHHMMSS-CC)
   -h    Show this help message.
 ```
 
