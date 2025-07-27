@@ -1,16 +1,16 @@
 #!/bin/bash
 
 pass(){
-  if [[ "$@" == *"-h"* ]]; then
+  [[ "$@" == *"-h"* ]] && {
     echo "pass <directory> [options]"
     echo "        List all files in the given directory."
-    echo "  -a    Exclude audio files (m4a, mp3)"
-    echo "  -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4)"
-    echo "  -e    Exclude files with timestamps (YYYYMMDDHHMMSS)"
-    echo "  -d    Print duplicate (exif) files with timestamps (YYYYMMDDHHMMSS-CC)"
+    echo "  -a    Exclude audio files (m4a, mp3)."
+    echo "  -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4)."
+    echo "  -e    Exclude files with timestamps (YYYYMMDDHHMMSS)."
+    echo "  -d    Print duplicate (exif) files with timestamps (YYYYMMDDHHMMSS-CC)."
     echo "  -h    Show this help message."
     return 1
-  fi
+  }
 
   case "$2" in
     -a) rgx='.*\.(m4a|mp3)$'; opt="-not";;

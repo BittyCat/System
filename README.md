@@ -6,6 +6,7 @@ This repository contains a collection of scripts and tools designed to enhance t
 Scripts:
 - **exif.bash**: Rename files based on their EXIF datetime.
 - **pass.bash**: Print files in a directory excluding audio files, image files, exif files, or print duplicate (exif) files.
+- **renum.bash**: Renumber files in a directory with a prefix and zero-padded index.
 
 ## exif.bash
 ```
@@ -41,10 +42,10 @@ run/
 ```
 pass <directory> [options]
         List all files in the given directory.
-  -a    Exclude audio files (m4a, mp3)
-  -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4)
-  -e    Exclude files with timestamps (YYYYMMDDHHMMSS)
-  -d    Print duplicate (exif) files with timestamps (YYYYMMDDHHMMSS-CC)
+  -a    Exclude audio files (m4a, mp3).
+  -i    Exclude image files (jpg, jpeg, png, mov, avi, mp4).
+  -e    Exclude files with timestamps (YYYYMMDDHHMMSS).
+  -d    Print duplicate (exif) files with timestamps (YYYYMMDDHHMMSS-CC).
   -h    Show this help message.
 ```
 
@@ -114,3 +115,32 @@ run/
 
 ## renum.bash
 ```
+renum <directory> <prefix> <start_index> [-n]
+        Renumber files in a directory with a prefix and zero-padded index.
+  -n    Do not rename files, only print changes.
+```
+
+### Example
+```
+rsync -aHog --delete-after test/ run/
+. system/bash/renum.bash
+renum run/ file 1 -n
+```
+
+**Output**
+```
+file_01.jpg <-- 17677.jpg
+file_02.jpg <-- 2148799121.jpg
+file_03.jpg <-- 2149271448.jpg
+file_04.jpg <-- 2149512970.jpg
+file_05.jpg <-- 26163.jpg
+file_06.jpg <-- 26171.jpg
+file_07.jpg <-- aromatic-cup-tea-winter-table-forest.jpg
+file_08.mp3 <-- calming-rain-257596.mp3
+file_09.jpg <-- happy-marshmallow-snowmen-christmas-winter-holiday-decorations copy.jpg
+file_10.jpg <-- happy-marshmallow-snowmen-christmas-winter-holiday-decorations.jpg
+```
+
+## sync.bash
+```
+
