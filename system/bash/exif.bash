@@ -21,9 +21,7 @@ exif(){
 
   [[ ! -d "$1" ]] && echo "Error: Directory does not exist." && return 1
 
-  echo $'\n'"${1%/}/"$'\n'
   _exif "${1%/}/" -n
-  echo # newline
 
   [[ "$2" == "-n" ]] || _exif "${1%/}/"
 }
