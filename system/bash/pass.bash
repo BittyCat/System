@@ -22,7 +22,5 @@ pass(){
 
   [[ ! -d "$1" ]] && echo "Error: Directory does not exist." && return 1
 
-  echo $'\n'"${1%/}/"$'\n'
   find "${1%/}/" -type f -regextype posix-extended ${opt} -regex ${rgx} -printf "%P\n"
-  echo # newline
 }

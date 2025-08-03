@@ -21,9 +21,10 @@ vim_wrap(){
 
 print(){
   for file in "$@"; do
-    echo $'\n'"$file":$'\n'
+    echo $'\033[36m'$'\n'"$file"$'\n'$'\033[0m' # Green color
     while IFS= read -r line; do
-      echo "$line""\\"
+      echo "  $line"$'\033[36m''$'$'\033[0m' # Cyan color
     done < "$file"
+    echo # newline
   done
 }

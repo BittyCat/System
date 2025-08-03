@@ -60,8 +60,6 @@ pass run/ -a
 
 **Output**
 ```
-run/
-
 17677.jpg
 2148799121.jpg
 2149271448.jpg
@@ -80,8 +78,6 @@ pass run/ -i
 
 **Output**
 ```
-run/
-
 calming-rain-257596.mp3
 ```
 
@@ -94,8 +90,6 @@ pass run/ -e
 
 **Output**
 ```
-run/
-
 calming-rain-257596.mp3
 ```
 
@@ -106,8 +100,6 @@ pass run/ -d
 
 **Output**
 ```
-run/
-
 20250721174222-01.jpg
 ```
 
@@ -116,6 +108,7 @@ run/
 renum <directory> <prefix> <start_index> [-n]
         Renumber files in a directory with a prefix and zero-padded index.
   -n    Do not rename files, only print changes.
+  -h    Show this help message.
 ```
 
 ### Example
@@ -141,4 +134,36 @@ file_10.jpg <-- happy-marshmallow-snowmen-christmas-winter-holiday-decorations.j
 
 ## sync.bash
 ```
+
+```
+
+### Example
+```
+. system/bash/sync.bash
+mkdir test2
+sync test/ test2/ -n
+```
+
+**Output**
+```
+sending incremental file list
+ 2025/08/02 18:43:49 .d..t...... ./
+ 2025/08/02 18:43:49 >f+++++++++ 17677.jpg
+ 2025/08/02 18:43:49 >f+++++++++ 2148799121.jpg
+ 2025/08/02 18:43:49 >f+++++++++ 2149271448.jpg
+ 2025/08/02 18:43:49 >f+++++++++ 2149512970.jpg
+ 2025/08/02 18:43:49 >f+++++++++ 26163.jpg
+ 2025/08/02 18:43:49 >f+++++++++ 26171.jpg
+ 2025/08/02 18:43:49 >f+++++++++ aromatic-cup-tea-winter-table-forest.jpg
+ 2025/08/02 18:43:49 >f+++++++++ calming-rain-257596.mp3
+ 2025/08/02 18:43:49 >f+++++++++ happy-marshmallow-snowmen-christmas-winter-holiday-decorations copy.jpg
+ 2025/08/02 18:43:49 >f+++++++++ happy-marshmallow-snowmen-christmas-winter-holiday-decorations.jpg
+
+sent 444 bytes  received 49 bytes  986.00 bytes/sec
+total size is 21,699,082  speedup is 44,014.37 (DRY RUN)
+```
+
+### free
+```
+
 
