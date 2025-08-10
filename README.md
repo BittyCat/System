@@ -8,6 +8,11 @@ Scripts:
 - **pass.bash**: Print files in a directory excluding audio files, image files, exif files, or print duplicate (exif) files.
 - **renum.bash**: Renumber files in a directory with a prefix and zero-padded index.
 
+For every script:\
+`. system/bash/<script_name>.bash`\
+For some scripts, when using `run/`:\
+`rsync -aHog --delete-after test/ run/`
+
 ## exif.bash
 ```
 exif <directory> [-n|-h]
@@ -16,14 +21,7 @@ exif <directory> [-n|-h]
   -h    Show this help message.
 ```
 
-### Example
-```
-rsync -aHog --delete-after test/ run/
-. system/bash/exif.bash
-exif run/ -n
-```
-
-**Output**
+`exif run/ -n`
 ```
 20250721174321.jpg <-- 17677.jpg
 20250721174157.jpg <-- 2148799121.jpg
@@ -47,18 +45,7 @@ pass <directory> [options]
   -h    Show this help message.
 ```
 
-### Example
-```
-rsync -aHog --delete-after test/ run/
-. system/bash/pass.bash
-```
-
-#### Exclude audio files (m4a, mp3)
-```
-pass run/ -a
-```
-
-**Output**
+`pass run/ -a`
 ```
 17677.jpg
 2148799121.jpg
@@ -71,34 +58,17 @@ happy-marshmallow-snowmen-christmas-winter-holiday-decorations copy.jpg
 happy-marshmallow-snowmen-christmas-winter-holiday-decorations.jpg
 ```
 
-#### Exclude image files (jpg, jpeg, png, mov, avi, mp4)
-```
-pass run/ -i
-```
-
-**Output**
+`pass run/ -i`
 ```
 calming-rain-257596.mp3
 ```
 
-#### Exclude files with timestamps (YYYYMMDDHHMMSS)
-```
-. system/bash/exif.bash
-exif run/
-pass run/ -e
-```
-
-**Output**
+`pass run/ -e` (after running `exif run/`)
 ```
 calming-rain-257596.mp3
 ```
 
-#### Print duplicate files with timestamps (YYYYMMDDHHMMSS-SS)
-```
-pass run/ -d
-```
-
-**Output**
+`pass run/ -d` (after running `exif run/`)
 ```
 20250721174222-01.jpg
 ```
@@ -111,14 +81,7 @@ renum <directory> <prefix> <start_index> [-n]
   -h    Show this help message.
 ```
 
-### Example
-```
-rsync -aHog --delete-after test/ run/
-. system/bash/renum.bash
-renum run/ file 1 -n
-```
-
-**Output**
+`renum run/ file 1 -n`
 ```
 file_01.jpg <-- 17677.jpg
 file_02.jpg <-- 2148799121.jpg
@@ -133,31 +96,29 @@ file_10.jpg <-- happy-marshmallow-snowmen-christmas-winter-holiday-decorations.j
 ```
 
 ## sync.bash
+
+### sync
+```
+sync <source> <destination> [-n]
+        Synchronize files from source to destination.
+  -n    Perform a dry run without making changes.
+  -h    Show this help message.
 ```
 
-```
-
-### Example
-```
-. system/bash/sync.bash
-mkdir test2
-sync test/ test2/ -n
-```
-
-**Output**
+`sync test/ test2/ -n`
 ```
 sending incremental file list
- 2025/08/02 18:43:49 .d..t...... ./
- 2025/08/02 18:43:49 >f+++++++++ 17677.jpg
- 2025/08/02 18:43:49 >f+++++++++ 2148799121.jpg
- 2025/08/02 18:43:49 >f+++++++++ 2149271448.jpg
- 2025/08/02 18:43:49 >f+++++++++ 2149512970.jpg
- 2025/08/02 18:43:49 >f+++++++++ 26163.jpg
- 2025/08/02 18:43:49 >f+++++++++ 26171.jpg
- 2025/08/02 18:43:49 >f+++++++++ aromatic-cup-tea-winter-table-forest.jpg
- 2025/08/02 18:43:49 >f+++++++++ calming-rain-257596.mp3
- 2025/08/02 18:43:49 >f+++++++++ happy-marshmallow-snowmen-christmas-winter-holiday-decorations copy.jpg
- 2025/08/02 18:43:49 >f+++++++++ happy-marshmallow-snowmen-christmas-winter-holiday-decorations.jpg
+ 2025/08/10 19:06:37 .d..t...... ./
+ 2025/08/10 19:06:37 >f+++++++++ 17677.jpg
+ 2025/08/10 19:06:37 >f+++++++++ 2148799121.jpg
+ 2025/08/10 19:06:37 >f+++++++++ 2149271448.jpg
+ 2025/08/10 19:06:37 >f+++++++++ 2149512970.jpg
+ 2025/08/10 19:06:37 >f+++++++++ 26163.jpg
+ 2025/08/10 19:06:37 >f+++++++++ 26171.jpg
+ 2025/08/10 19:06:37 >f+++++++++ aromatic-cup-tea-winter-table-forest.jpg
+ 2025/08/10 19:06:37 >f+++++++++ calming-rain-257596.mp3
+ 2025/08/10 19:06:37 >f+++++++++ happy-marshmallow-snowmen-christmas-winter-holiday-decorations copy.jpg
+ 2025/08/10 19:06:37 >f+++++++++ happy-marshmallow-snowmen-christmas-winter-holiday-decorations.jpg
 
 sent 444 bytes  received 49 bytes  986.00 bytes/sec
 total size is 21,699,082  speedup is 44,014.37 (DRY RUN)
@@ -165,5 +126,17 @@ total size is 21,699,082  speedup is 44,014.37 (DRY RUN)
 
 ### free
 ```
+free <mountpoint> [<mountpoint> ...]
+        Display free space on the specified mount points.
+  -h    Show this help message.
+```
 
+`free /mnt/c`
+```
+Filesystem     1kB-blocks      Used Use%   IUsed Mounted on
+C:\             510694257 442355512  87% -999001 /mnt/c
+```
 
+## vim.bash
+```
+```

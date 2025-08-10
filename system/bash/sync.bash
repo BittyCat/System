@@ -5,6 +5,7 @@ sync(){
     echo "sync <source> <destination> [-n]"
     echo "        Synchronize files from source to destination."
     echo "  -n    Perform a dry run without making changes."
+    echo "  -h    Show this help message."
     return 1
   }
 
@@ -16,6 +17,7 @@ free(){
   [[ "$@" == *"-h"* || -z "$1" ]] && {
     echo "free <mountpoint> [<mountpoint> ...]"
     echo "        Display free space on the specified mount points."
+    echo "  -h    Show this help message."
     return 1
   }
 
