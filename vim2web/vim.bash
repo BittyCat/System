@@ -22,7 +22,7 @@ vim2html(){
 }
 
 html2tex(){
-  [[ "$@" == *"-h"* ]] && {
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
     echo "html2tex <file> [options]"
     echo "        Converts HTML content to LaTeX format."
     echo "  -h    Show this help message."
@@ -65,8 +65,9 @@ vim2web(){
     return 0
   }
 
-  dirname="${1//./_}"
-  basename="${dirname##*/}"
+  basename="${1##*/}"
+  basename="${basename//./_}"
+  dirname="${basename}"
   filepath="${dirname}/${basename}.html"
 
   mkdir -p "${dirname}" 2>/dev/null
@@ -74,6 +75,7 @@ vim2web(){
 
   mv "${dirname}/vim.html" "${filepath}"
   sed -i "s|_filename_|${1##*/}|" "${filepath}"
+  echo >> "${filepath}" # newline
   vim2html "$1" >> "${filepath}"
   cat >> "${filepath}" <<EOF
     </pre>

@@ -2,7 +2,7 @@
 
 sync(){
   [[ "$@" == *"-h"* || -z "$1" || -z "$2" ]] && {
-    echo "sync <source> <destination> [-n]"
+    echo "sync <source> <destination> [options]"
     echo "        Synchronize files from source to destination."
     echo "  -n    Perform a dry run without making changes."
     echo "  -h    Show this help message."

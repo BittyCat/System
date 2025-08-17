@@ -7,6 +7,8 @@ Scripts:
 - **exif.bash**: Rename files based on their EXIF datetime.
 - **pass.bash**: Print files in a directory excluding audio files, image files, exif files, or print duplicate (exif) files.
 - **renum.bash**: Renumber files in a directory with a prefix and zero-padded index.
+- **sync.bash**: Synchronize files from source to destination and display free space on mount points.
+- **vim.bash**: Vim syntax highlighting for various file types.
 
 For every script:\
 `. system/bash/<script_name>.bash`\
@@ -15,7 +17,7 @@ For some scripts, when using `run/`:\
 
 ## exif.bash
 ```
-exif <directory> [-n|-h]
+exif <directory> [options]
         Rename files based on their EXIF datetime.
   -n    Do not rename files, only print changes.
   -h    Show this help message.
@@ -75,7 +77,7 @@ calming-rain-257596.mp3
 
 ## renum.bash
 ```
-renum <directory> <prefix> <start_index> [-n]
+renum <directory> <prefix> <start_index> [options]
         Renumber files in a directory with a prefix and zero-padded index.
   -n    Do not rename files, only print changes.
   -h    Show this help message.
@@ -99,7 +101,7 @@ file_10.jpg <-- happy-marshmallow-snowmen-christmas-winter-holiday-decorations.j
 
 ### sync
 ```
-sync <source> <destination> [-n]
+sync <source> <destination> [options]
         Synchronize files from source to destination.
   -n    Perform a dry run without making changes.
   -h    Show this help message.
@@ -138,5 +140,8 @@ C:\             510694257 442355512  87% -999001 /mnt/c
 ```
 
 ## vim.bash
+
+### vim2html
 ```
+
 ```
