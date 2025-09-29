@@ -1,5 +1,29 @@
 #!/bin/bash
 
+_prevent_overwrite(){
+  dirname="${1%/}"
+
+  for file in "${dirname}"/*;do
+    ext="${file##*.}"
+    basename="${file##*/}"
+    mv "${file}" "${dirname}/_${basename}_.${ext}" 2>/dev/null
+  done
+}
+
+_renum(){
+  dirname="${1%/}"
+  filename="$2"
+  index=$3
+
+  for file in "${dirname}"/*;do
+    renum=`printf '%02d' ${index}`
+    ext="${file##*.}"
+    renamed="${dirname}/${filename}_${renum}.${ext}"
+    [[ "$4" == "-n" ]] && echo "${renamed##*/} <-- ${file##*/}" || mv "${file}" "${renamed}"
+    ((index++))
+  done
+}
+
 renum(){
   [[ "$@" == *"-h"* ]] && {
     echo "renum <directory> <prefix> <start_index> [options]"
@@ -22,25 +46,10 @@ renum(){
     return 1
   }
 
-  index=$3
-  for file in "${1%/}"/*;do
-    renum=`printf '%02d' ${index}`
-    renamed="${1%/}/$2_${renum}.${file##*.}"
-    echo "${renamed##*/} <-- ${file##*/}"
-    ((index++))
-  done
+  _renum "$@" -n
 
   [[ "$4" == "-n" ]] && return 0
 
-  for file in "${1%/}"/*;do # prevent overwrite
-    mv "${file}" "${file}_renum.${file##*.}" 2>/dev/null
-  done
-
-  index=$3
-  for file in "${1%/}"/*;do
-    renum=`printf '%02d' ${index}`
-    renamed="${1%/}/$2_${renum}.${file##*.}"
-    mv "${file}" "${renamed}"
-    ((index++))
-  done
+  _prevent_overwrite "$1"
+  _renum "$@"
 }
