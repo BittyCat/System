@@ -17,8 +17,8 @@ vim2html(){
     -c "hi Identifier ctermfg=13" \
     -cwqa "$1" >/dev/null
 
-  sed -n '/<pre.*/,/<\/pre.*/{//!p;}' "$1".html # extract <pre> content
-  rm -rf "$1".html # remove temp html file
+  sed -n '/<pre.*/,/<\/pre.*/{//!p;}' "$1".html
+  rm -rf "$1".html
 }
 
 html2tex(){

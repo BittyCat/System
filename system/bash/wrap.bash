@@ -5,7 +5,6 @@ vim_wrap_help(){
   echo "  -E, --show-ends: Display $ at end of each line"
 }
 
-# Wrap text with Vim in console.
 vim_wrap(){
   [[ "$@" == *"-h"* || -z "$1" ]] && {
 
