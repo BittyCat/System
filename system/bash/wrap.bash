@@ -1,35 +1,33 @@
 #!/bin/bash
 
-vim_wrap_help(){
-  echo "vim_wrap <file> [-E|--show-ends]"
-  echo "  -E, --show-ends: Display $ at end of each line"
-}
-
-vim_wrap(){
+wrap(){
   [[ "$@" == *"-h"* || -z "$1" ]] && {
-
+    echo "wrap <file> [options]"
+    echo "        Wraps a file using vim's wrap.vim script."
+    echo "  -E    Display $ at the end of each line."
+    echo "  -h    Show this help message."
     return 0
   }
 
-
-  [[ -z "$1" ]] && vim_wrap_help && return 1
-  [[ "$1" == '-h' ]] && vim_wrap_help && return 1
-  # Work on a copy of the file.
   cp "$1" "$1".bak
-  # Use Vim to wrap the text.
   vim -c "call Wrap()" -c "qa!" "$1".bak
-  # Display the wrapped text.
   cat $2 "$1".bak
-  # Remove the backup file.
   rm -f "$1".bak
 }
 
 print(){
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
+    echo "print <file> [file2 ...]"
+    echo "        Prints file(s) with $ at the end of each line."
+    echo "  -h    Show this help message."
+    return 0
+  }
+
   for file in "$@"; do
-    echo $'\033[36m'$'\n'"$file"$'\n'$'\033[0m' # Green color
+    echo $'\033[36m'$'\n'"$file"$'\n'$'\033[0m'
     while IFS= read -r line; do
-      echo "  $line"$'\033[36m''$'$'\033[0m' # Cyan color
+      echo "  $line"$'\033[36m''$'$'\033[0m'
     done < "$file"
-    echo # newline
+    echo
   done
 }
