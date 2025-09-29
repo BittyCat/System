@@ -6,7 +6,7 @@ sync(){
     echo "        Synchronize files from source to destination."
     echo "  -n    Perform a dry run without making changes."
     echo "  -h    Show this help message."
-    return 1
+    return 0
   }
 
   ionice -c 2 -n 4 \
@@ -18,7 +18,7 @@ free(){
     echo "free <mountpoint> [<mountpoint> ...]"
     echo "        Display free space on the specified mount points."
     echo "  -h    Show this help message."
-    return 1
+    return 0
   }
 
   df --block-size 1000 --output="source,size,used,pcent,iused,target" "$@"

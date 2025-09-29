@@ -7,6 +7,12 @@ vim_wrap_help(){
 
 # Wrap text with Vim in console.
 vim_wrap(){
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
+
+    return 0
+  }
+
+
   [[ -z "$1" ]] && vim_wrap_help && return 1
   [[ "$1" == '-h' ]] && vim_wrap_help && return 1
   # Work on a copy of the file.

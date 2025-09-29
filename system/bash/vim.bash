@@ -22,7 +22,7 @@ vim2html(){
 }
 
 html2tex(){
-  [[ "$@" == *"-h"* ]] && {
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
     echo "html2tex <file> [options]"
     echo "        Converts HTML content to LaTeX format."
     echo "  -h    Show this help message."

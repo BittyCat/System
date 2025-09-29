@@ -11,7 +11,7 @@ _exif(){
 }
 
 exif(){
-  [[ "$@" == *"-h"* ]] && {
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
     echo "exif <directory> [options]"
     echo "        Rename files based on their EXIF datetime."
     echo "  -n    Do not rename files, only print changes."

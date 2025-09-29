@@ -25,7 +25,7 @@ _renum(){
 }
 
 renum(){
-  [[ "$@" == *"-h"* ]] && {
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
     echo "renum <directory> <prefix> <start_index> [options]"
     echo "        Renumber files in a directory with a prefix and zero-padded index."
     echo "  -n    Do not rename files, only print changes."

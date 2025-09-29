@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pass(){
-  [[ "$@" == *"-h"* ]] && {
+  [[ "$@" == *"-h"* || -z "$1" ]] && {
     echo "pass <directory> [options]"
     echo "        List all files in the given directory."
     echo "  -a    Exclude audio files (m4a, mp3)."
@@ -9,7 +9,7 @@ pass(){
     echo "  -e    Exclude files with timestamps (YYYYMMDDHHMMSS)."
     echo "  -d    Print duplicate (exif) files with timestamps (YYYYMMDDHHMMSS-CC)."
     echo "  -h    Show this help message."
-    return 1
+    return 0
   }
 
   case "$2" in
