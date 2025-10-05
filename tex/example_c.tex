@@ -1,0 +1,16 @@
+\textcolor{PreProc}{#include }\textcolor{Constant}{<stdlib.h>}
+\textcolor{PreProc}{#include }\textcolor{Constant}{<stdio.h>}
+\textcolor{PreProc}{#include }\textcolor{Constant}{<string.h>}
+\textcolor{PreProc}{#include }\textcolor{Constant}{"bitops.h"}
+
+\textcolor{Type}{int} len(\textcolor{Type}{char} *str)
+\{
+  \textcolor{Type}{int} len = \textcolor{Constant}{0};
+
+  \textcolor{Statement}{while} (str[len] != \textcolor{Constant}{0})
+  \{
+    len++;
+  \}
+
+  \textcolor{Statement}{return} len;
+\}

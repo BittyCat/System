@@ -1,0 +1,29 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vimcol}
+\RequirePackage[dvipsnames]{xcolor}
+\newcommand*{\vimcolors}{
+  \definecolor{Comment}{HTML}{C0C0C0}     % Silver
+  \definecolor{Constant}{HTML}{00FFFF}    % Aqua
+  \definecolor{Type}{HTML}{00FF87}        % SpringGreen1
+  \definecolor{Statement}{HTML}{87D7FF}   % SkyBlue1
+  \definecolor{Identifier}{HTML}{FFD7FF}  % Thistle1
+  \colorlet{Normal}{white}
+  \colorlet{PreProc}{Comment}
+  \colorlet{Special}{Normal}
+  \colorlet{Ignore}{Normal}
+  \colorlet{Error}{Normal}
+  \colorlet{Todo}{Normal}
+}
+\newcommand*{\printcolors}{
+  \definecolor{Comment}{HTML}{708090}     % SlateGray
+  \definecolor{Constant}{HTML}{BC8F8F}    % RosyBrown
+  \definecolor{Type}{HTML}{5F9EA0}        % CadetBlue
+  \definecolor{Statement}{HTML}{4682B4}   % SteelBlue
+  \definecolor{Identifier}{HTML}{FFD7FF}  % Thistle1
+  \colorlet{Normal}{black}
+  \colorlet{PreProc}{Comment}
+  \colorlet{Special}{Normal}
+  \colorlet{Ignore}{Normal}
+  \colorlet{Error}{Normal}
+  \colorlet{Todo}{Normal}
+}
